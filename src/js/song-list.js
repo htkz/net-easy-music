@@ -10,7 +10,7 @@
       $el.html(this.template);
       const {songs} = data;
       const divList = songs.map(
-        (song) => $(`<div class="song"><li data-song-id="${song.id}">${song.name}</li></div>`)
+        (song) => $(`<div class="song"><li data-song-id="${song.objectId}">${song.name}</li></div>`)
       );
       $el.find('ul').empty();
       divList.map((div) => {
@@ -57,7 +57,11 @@
         event.preventDefault();
         this.view.activeItem(event.currentTarget);
         const songId = $(event.currentTarget).attr('data-song-id');
-        window.eventHub.emit('select', {id: songId});
+        this.model.data.songs.forEach((song) => {
+          if(song.objectId === songId) {
+            window.eventHub.emit('select', deepCopy(song));
+          };
+        });
       });
     },
     bindEventHub() {

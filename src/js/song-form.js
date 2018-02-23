@@ -67,9 +67,7 @@
       this.view.init();
       this.view.render(this.model);
       this.bindEvents();
-      window.eventHub.on('upload', (data) => {
-        this.reset(data);
-      });
+      this.bindEventHub();
     },
     reset(data) {
       this.view.render(data);
@@ -89,6 +87,15 @@
           });
       });
     },
+    bindEventHub() {
+      window.eventHub.on('upload', (data) => {
+        this.reset(data);
+      });
+      window.eventHub.on('select', (data) => {
+        this.model.data = data;
+        this.view.render(this.model.data);
+      })
+    }
   };
   controller.init(view, model);
 }
