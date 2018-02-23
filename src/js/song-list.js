@@ -10,7 +10,7 @@
       $el.html(this.template);
       const {songs} = data;
       const divList = songs.map(
-        (song) => $(`<div class="song"><li>${song.name}</li></div>`)
+        (song) => $(`<div class="song"><li data-song-id="${song.id}">${song.name}</li></div>`)
       );
       $el.find('ul').empty();
       divList.map((div) => {
@@ -56,6 +56,8 @@
       $(this.view.el).on('click', 'li', (event) => {
         event.preventDefault();
         this.view.activeItem(event.currentTarget);
+        const songId = $(event.currentTarget).attr('data-song-id');
+        window.eventHub.emit('select', {id: songId});
       });
     },
     bindEventHub() {

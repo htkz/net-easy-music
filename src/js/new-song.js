@@ -13,13 +13,23 @@
       this.model = model;
       this.view.render(this.model);
       this.active();
-      window.eventHub.on('upload', (data) => {
-        this.active();
-      });
+      this.bindEventHub();
     },
     active() {
       $(this.view.el).addClass('active');
-    }
+    },
+    deactive() {
+      $(this.view.el).removeClass('active');
+    },
+    bindEventHub() {
+      window.eventHub.on('upload', (data) => {
+        this.active();
+      });
+      window.eventHub.on('select', (data) => {
+        const songId = data.id;
+        this.deactive();
+      });
+    },
   };
   controller.init(view, model);
 }
