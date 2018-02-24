@@ -63,6 +63,22 @@
         console.error(error);
       });
     },
+    update(data) {
+      const song = AV.Object.createWithoutData('Song', this.data.objectId);
+      const needs = ['name', 'singer', 'url'];
+      needs.forEach((need) => {
+        song.set(need, data[need]);
+      });
+      return song.save().then((song) => {
+        const {id, attributes} = song;
+        Object.assign(this.data, {
+          id,
+          ...attributes,
+        });
+      }, (error) => {
+        console.error(error);
+      });
+    },
   };
   const controller = {
     init(view, model) {
@@ -76,19 +92,35 @@
     reset(data) {
       this.view.render(data);
     },
+    create() {
+      const needs = ['name', 'singer', 'url'];
+      const data = {};
+      needs.forEach((need) => {
+        data[need] = this.view.$el.find(`#${need}`).val();
+      });
+      this.model.create(data).then(() => {
+          this.view.reset();
+          window.eventHub.emit('create', deepCopy(this.model.data));
+      });
+    },
+    update() {
+      const needs = ['name', 'singer', 'url'];
+      const data = {};
+      needs.forEach((need) => {
+        data[need] = this.view.$el.find(`#${need}`).val();
+      });
+      this.model.update(deepCopy(data)).then(() => {
+        window.eventHub.emit('update', this.model.data);
+      });
+    },
     bindEvents() {
       this.view.$el.on('submit', 'form', (e) => {
         e.preventDefault();
-        const needs = ['name', 'singer', 'url'];
-        const data = {};
-        needs.forEach((need) => {
-          data[need] = this.view.$el.find(`#${need}`).val();
-        });
-        this.model.create(data)
-          .then(() => {
-            this.view.reset();
-            window.eventHub.emit('create', deepCopy(this.model.data));
-          });
+        if(this.model.data.objectId) {
+          this.update();
+        } else {
+          this.create();
+        };
       });
     },
     bindEventHub() {

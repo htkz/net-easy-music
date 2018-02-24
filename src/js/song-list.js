@@ -75,6 +75,15 @@
       window.eventHub.on('new', () => {
         this.view.clearActive();
       });
+      window.eventHub.on('update', (data) => {
+        const songs = this.model.data.songs;
+        songs.forEach((song) => {
+          if(song.objectId === data.objectId) {
+            Object.assign(song, data);
+            this.view.render(this.model.data);
+          };
+        });
+      });
     },
   };
   controller.init(view, model);
