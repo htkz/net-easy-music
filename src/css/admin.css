@@ -56,6 +56,7 @@ aside .newSong {
   padding: 10px;
   text-align: center;
   border-bottom: 1px solid #999;
+  cursor: pointer;
 }
 
 aside .active {
@@ -70,6 +71,7 @@ aside .songList li {
   border-bottom: 1px solid #ddd;
   padding: 10px;
   margin: 0 10px;
+  cursor: pointer;
 }
 
 /* main */
