@@ -14,12 +14,20 @@
       this.view.render(this.model);
       this.active();
       this.bindEventHub();
+      this.bindEvents();
     },
     active() {
       $(this.view.el).addClass('active');
     },
     deactive() {
       $(this.view.el).removeClass('active');
+    },
+    bindEvents() {
+      $(this.view.el).on('click', (event) => {
+        event.preventDefault();
+        this.active();
+        window.eventHub.emit('new');
+      });
     },
     bindEventHub() {
       window.eventHub.on('upload', (data) => {

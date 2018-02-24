@@ -5,7 +5,6 @@
       this.$el = $(this.el);
     },
     template: `
-      <h1>新建歌曲</h1>
       <form class="form">
         <div class="row">
           <label for="name">歌名</label>
@@ -31,6 +30,11 @@
         html = html.replace(`__${p}__`, data[p] || '');
       });
       $(this.el).html(html);
+      if(!data.objectId) {
+        $(this.el).prepend('<h1>新建歌曲</h1>');
+      } else {
+        $(this.el).prepend('<h1>编辑歌曲</h1>');
+      };
     },
     reset() {
       this.render();
@@ -94,8 +98,11 @@
       window.eventHub.on('select', (data) => {
         this.model.data = data;
         this.view.render(this.model.data);
-      })
-    }
+      });
+      window.eventHub.on('new', () => {
+        this.view.reset();
+      });
+    },
   };
   controller.init(view, model);
 }
