@@ -8,19 +8,18 @@
     render(data) {
       const $el = $(this.el);
       $el.html(this.template);
-      const {songs} = data;
-      const divList = songs.map(
-        (song) => $(`<div class="song"><li data-song-id="${song.objectId}">${song.name}</li></div>`)
-      );
+      const {songs, selectedSongId} = data;
+      const divList = songs.map((song) => {
+          let $li = $(`<div class="song"><li data-song-id="${song.objectId}">${song.name}</li></div>`);
+          if(song.objectId === selectedSongId) {
+            $li.addClass('active');
+          };
+          return $li;
+      });
       $el.find('ul').empty();
       divList.map((div) => {
         $el.find('ul').append(div);
       });
-    },
-    activeItem(li) {
-      $li = $(li);
-      $li.addClass('active');
-      $li.parent().siblings().find('li.active').removeClass('active');
     },
     clearActive() {
       $(this.el).find('.active').removeClass('active');
@@ -29,6 +28,7 @@
   const model = {
     data: {
       songs: [],
+      selectedSongId: '',
     },
     find() {
       const query = new AV.Query('Song');
@@ -55,8 +55,9 @@
     bindEvents() {
       $(this.view.el).on('click', 'li', (event) => {
         event.preventDefault();
-        this.view.activeItem(event.currentTarget);
         const songId = $(event.currentTarget).attr('data-song-id');
+        this.model.data.selectedSongId = songId;
+        this.view.render(this.model.data);
         this.model.data.songs.forEach((song) => {
           if(song.objectId === songId) {
             window.eventHub.emit('select', deepCopy(song));

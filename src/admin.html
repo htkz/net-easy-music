@@ -8,16 +8,42 @@
     <script src="js/vendor/plupload.js"></script>
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/topBar.css">
+    <link rel="stylesheet" href="css/song-form.css">
+    <link rel="stylesheet" href="css/uploadArea.css">
+    <link rel="stylesheet" href="css/song-list.css">
   </head>
   <body>
-    <div class="page">
-      <aside>
-        <div class="newSong"></div>
-        <div id="songList-container"></div>
-        <div class="uploadArea"></div>
-      </aside>
-      <main></main>
-    </div>
+    <header>
+      <div class="wraper">
+        <div class="left">
+          <h1 class="logo"></h1>
+          <div class="text">上传音乐</div>
+        </div>
+        <div class="right">
+          <span class="user-name">htkz</span>
+          <span class="divide-line">|</span>
+          <span class="quit">退出</span>
+        </div>
+      </div>
+    </header>
+    <div class="bottomColor"></div>
+    <section>
+      <div class="page">
+        <aside>
+          <div class="newSong"></div>
+          <div id="songList-container"></div>
+        </aside>
+        <main>
+          <div class="uploadArea"></div>
+          <div class="song-form">
+            <div class="wrapper-1">
+              
+            </div>
+          </div>
+        </main>
+      </div>
+    </section>
   </body>
   <script src="js/util/util.js"></script>
   <script src="js/initializers/av.js"></script>

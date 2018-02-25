@@ -1,10 +1,11 @@
 {
   const view = {
-    el: '.page > main',
+    el: '.page > main > .song-form > .wrapper-1',
     init() {
       this.$el = $(this.el);
     },
     template: `
+    <div class="wrapper">
       <form class="form">
         <div class="row">
           <label for="name">歌名</label>
@@ -22,6 +23,7 @@
           <button type="submit">保存</button>
         </div>
       </form>
+    </div>
     `,
     render(data = {}) {
       const placeholders = ['name', 'singer', 'url'];
@@ -31,9 +33,9 @@
       });
       $(this.el).html(html);
       if(!data.objectId) {
-        $(this.el).prepend('<h1>新建歌曲</h1>');
+        $(this.el).find('.wrapper').prepend('<h1>新建歌曲</h1>');
       } else {
-        $(this.el).prepend('<h1>编辑歌曲</h1>');
+        $(this.el).find('.wrapper').prepend('<h1>编辑歌曲</h1>');
       };
     },
     reset() {

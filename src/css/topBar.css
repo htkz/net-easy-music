@@ -1,0 +1,50 @@
+header {
+  background: #242424;
+  display: flex;
+  justify-content: center;
+}
+
+header .wraper {
+  width: 1100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 1px solid yellow; */
+}
+
+header .wraper .left,
+header .wraper .right {
+  display: flex;
+  align-items: center;
+}
+
+header .wraper .right {
+  color: #adadad;
+}
+
+header .wraper .right .divide-line {
+  margin: 0 10px;
+}
+
+
+header h1.logo {
+  width: 176px;
+  height: 69px;
+  background-position: 10px 0;
+  background: url(http://s3.music.126.net/uservideo/s/img/frame/topbar.png?v=26baca7ae718a43df6d207c65b0265df) no-repeat;
+}
+
+header .text {
+  color: #ccc;
+  font-size: 20px;
+  border-left: 1px solid #5b5b5b;
+  line-height: 22px;
+  padding-left: 16px;
+}
+
+.bottomColor {
+  height: 5px;
+  background: #c20c0c;
+  border-bottom: 1px solid #a40011;
+  width: 100%;
+}

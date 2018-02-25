@@ -1,0 +1,30 @@
+.song-form {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  /* border: 1px solid red; */
+}
+
+.song-form h1 {
+  text-align: center;
+}
+
+.song-form .wrapper-1 {
+  width: 675px;
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+}
+
+.song-form .wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 275px;
+  /* border: 1px solid #ddd; */
+}
+
+.song-form .form {
+  width: 275px;
+  /* border: 1px solid #ddd; */
+}

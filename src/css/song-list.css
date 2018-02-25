@@ -1,0 +1,11 @@
+#songList-container {
+  background-color: #fcfcfc;
+}
+
+.songList .song {
+  background-color: #f7f7f7;
+}
+
+.songList .song.active {
+  background-color: #fff;
+}

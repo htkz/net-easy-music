@@ -1,0 +1,56 @@
+.uploadArea  {
+  display: flex;
+  justify-content: center;
+}
+
+.uploadArea .wraper {
+  width: 675px;
+
+}
+
+.uploadArea #container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 675px;
+  height: 370px;
+  border: 1px solid #ddd;
+}
+
+.uploadArea #pickfiles {
+  /* border: 1px solid #ddd; */
+  height: 200px;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.uploadArea #pickfiles .upload-icon {
+  width: 120px;
+  height: 90px;
+  background: url(http://s3.music.126.net/uservideo/s/img/video/upload.png?v=c3549dd81783b7b8d9996fd9de076901) 50% no-repeat;
+}
+
+.uploadArea #pickfiles h2 {
+  margin: 18px 0 6px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.uploadArea #pickfiles p {
+  color: #999;
+}
+
+.uploadArea #uploadStatus {
+  border: 1px solid #ddd;
+  width: 675px;
+  padding: 8px;
+  border-top: none;
+}
+
+.uploadArea #uploadStatus .status {
+  color: #999;
+}

@@ -2,13 +2,16 @@
   const view = {
     el: '.uploadArea',
     template: `
+    <div class="wraper">
       <div id="container">
         <div id="pickfiles">
-          <span >点击或拖曳文件</span>
-          <p>文件大小不能超过40mb</p>
+          <i class="upload-icon"></i>
+          <h2>点击上传歌曲</h2>
+          <p>拖拽歌曲到此处也可上传</p>
         </div>
       </div>
-      <div id="uploadStatus">等待上传</div>
+      <div id="uploadStatus">上传状态：<span class="status">等待上传<span></div>
+    </div>
     `,
     find(selector) {
       return $(this.el).find(selector)[0];
@@ -51,13 +54,13 @@
           'UploadProgress': (up, file) => {
             // 每个文件上传时，处理相关的事情
             // document.querySelector('#uploadStatus').textContent = '上传中...'
-            this.view.find('#uploadStatus').textContent = '上传中...'
+            this.view.find('span.status').textContent = '上传中...'
           },
           'FileUploaded': (up, file, info) => {
             const filename = JSON.parse(info.response).key;
             const domain = up.getOption('domain');
             const sourceLink = domain + '/' + encodeURIComponent(filename);
-            this.view.find('#uploadStatus').textContent = `${filename} 上传成功！`;
+            this.view.find('span.status').textContent = `${filename} 上传成功！`;
 
             window.eventHub.emit('upload', {
               url: sourceLink,
