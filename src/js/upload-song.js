@@ -50,10 +50,10 @@
           },
           'BeforeUpload': function(up, file) {
             // 每个文件上传前，处理相关的事情
+            window.eventHub.emit('beforeUpload');
           },
           'UploadProgress': (up, file) => {
             // 每个文件上传时，处理相关的事情
-            // document.querySelector('#uploadStatus').textContent = '上传中...'
             this.view.find('span.status').textContent = '上传中...'
           },
           'FileUploaded': (up, file, info) => {
@@ -66,7 +66,7 @@
               url: sourceLink,
               name: filename,
             });
-
+            window.eventHub.emit('afterUpload');
           },
           'Error': function(up, err, errTip) {
             //上传出错时，处理相关的事情
